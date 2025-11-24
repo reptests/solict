@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team - Solict</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body{
+      font-family:'Roboto',sans-serif;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      background:linear-gradient(135deg,#0d0d0d,#1a1a1a,#0d0d0d);
+      color:#fff;
+      padding:50px 20px;
+      overflow-x:hidden;
+      position: relative;
+    }
+
+    /* Background animations */
+    body::before, body::after {
+      content:"";
+      position:absolute;
+      filter:blur(120px);
+      will-change: transform;
+      z-index:0;
+    }
+    body::before {
+      width:700px; height:700px;
+      background:radial-gradient(circle at 30% 30%,#7289da55,transparent 60%);
+      top:-200px; left:-200px;
+      animation:floatBG 20s ease-in-out infinite;
+    }
+    body::after {
+      width:500px; height:500px;
+      background:radial-gradient(circle at 70% 70%,#9b59ff55,transparent 60%);
+      bottom:-150px; right:-150px;
+      animation:floatBG2 25s ease-in-out infinite;
+    }
+    @keyframes floatBG{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-50px) rotate(45deg);}}
+    @keyframes floatBG2{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(30px) rotate(-30deg);}}
+
+    /* Animated gradient title */
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      text-align: center;
+      background: linear-gradient(90deg, #7289da, #9b59ff, #7289da);
+      background-size: 300% 300%;
+      color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleFlow 6s ease infinite;
+      text-shadow: 0 0 20px rgba(114,137,218,0.4);
+      margin-bottom: 15px;
+    }
+    @keyframes titleFlow{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    .bio{font-size:1.2rem;color:#bbb;text-align:center;margin-bottom:40px;}
+
+    /* Team cards */
+    .team-section{width:100%;max-width:1000px;margin:50px auto;text-align:center;}
+    .team-cards{display:flex;flex-wrap:wrap;gap:40px;justify-content:center;}
+    .team-card{
+      background:#1f1f1f;
+      padding:25px 20px;
+      border-radius:20px;
+      width:250px;
+      color:#fff;
+      box-shadow:0 6px 20px rgba(0,0,0,0.5);
+      transition:all 0.5s ease;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+    }
+    .team-card img{
+      width:120px;height:120px;border-radius:50%;margin-bottom:15px;
+      transition:all 0.5s ease;
+    }
+    .team-card h2{
+      margin-bottom:5px;
+      font-weight:700;
+      font-size:1.4rem;
+    }
+    .position-tag{
+      font-size:0.9rem;
+      font-weight:500;
+      color:#7289da;
+      margin-bottom:15px;
+    }
+    .team-card p{
+      font-size:1rem;
+      color:#ccc;
+      line-height:1.5;
+    }
+
+    /* Better hover effect */
+    .team-card:hover{
+      transform: translateY(-12px) scale(1.08) rotateX(5deg);
+      box-shadow:0 25px 50px rgba(114,137,218,0.7);
+      background:linear-gradient(145deg,#2c2c2c,#3b3b3b);
+    }
+    .team-card:hover img{
+      transform: scale(1.15) rotateZ(5deg);
+      box-shadow:0 10px 30px rgba(114,137,218,0.5);
+    }
+
+    /* Transition overlay */
+    #transition-overlay {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background-color:#0d0d0d;
+      display:flex; justify-content:center; align-items:center;
+      z-index:9999; pointer-events:none; opacity:1; transition:opacity 0.6s ease;
+    }
+    #transition-img {
+      width:150px; height:150px;
+      border-radius:50%;
+      border:4px solid #7289da;
+      animation:spin 1s linear infinite;
+    }
+    @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+
+  </style>
+</head>
+<body>
+
+<!-- Page Transition -->
+<div id="transition-overlay">
+  <img src="https://www.covetbot.lol/attached_assets/covet%20new%20icon_1763285985804.jpg" alt="Solict" id="transition-img">
+</div>
+
+<h1>Meet The Team!</h1>
+<p class="bio">Meet the minds behind Solict!</p>
+
+<section class="team-section">
+  <div class="team-cards">
+    <!-- Owner Card -->
+    <div class="team-card">
+      <img src="https://cdn.discordapp.com/avatars/1285277569113133161/c0fb800c636a104834515ac9047854b1.webp?size=1024" alt="Owner PFP">
+      <h2>Zen</h2>
+      <div class="position-tag">Owner</div>
+      <p>Lead developer and visionary behind Solict. Dedicated to creating the ultimate Discord bot experience with cutting-edge features and reliable performance.</p>
+    </div>
+
+    <!-- Co-Owner Card -->
+    <div class="team-card">
+      <img src="https://cdn.discordapp.com/attachments/1442141493170278523/1442254974645178378/IMG_1484.jpg?ex=6924c41d&is=6923729d&hm=a111081ea4fbe6069aedef73c41507989bee06ac40d55ea9b6d4d1e450a57cdc" alt="Co-Owner PFP">
+      <h2>L2</h2>
+      <div class="position-tag">Co-Owner</div>
+      <p>Co-owner and key contributor to Solict's development. Focused on delivering innovative solutions and maintaining excellence across all bot features.</p>
+    </div>
+
+    <!-- Web Designer Card -->
+    <div class="team-card">
+      <img src="https://cdn.discordapp.com/avatars/1019668815728103526/eda357be211518ecda03e2df06c7020b.webp?size=1024" alt="Web Designer PFP">
+      <h2>Rep</h2>
+      <div class="position-tag">Web Designer</div>
+      <p>Responsible for crafting the sleek, modern look of Solict's website and ensuring a clean, user-friendly interface across all pages.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.getElementById("transition-overlay");
+  setTimeout(() => {
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.style.display = 'none', 600);
+  }, 500);
+
+  const links = document.querySelectorAll('a[href$=".html"]');
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      overlay.style.display = 'flex';
+      overlay.style.opacity = '1';
+      setTimeout(() => window.location.href = href, 600);
+    });
+  });
+
+  // Centered Back to Home button
+  const backBtn = document.createElement("a");
+  backBtn.href = "index.html";
+  backBtn.textContent = "Back to Home";
+  backBtn.style.position = "fixed";
+  backBtn.style.bottom = "20px";
+  backBtn.style.left = "50%";
+  backBtn.style.transform = "translateX(-50%)";
+  backBtn.style.padding = "12px 24px";
+  backBtn.style.background = "#7289da";
+  backBtn.style.color = "#fff";
+  backBtn.style.fontWeight = "bold";
+  backBtn.style.borderRadius = "12px";
+  backBtn.style.textDecoration = "none";
+  backBtn.style.boxShadow = "0 5px 15px rgba(114,137,218,0.5)";
+  backBtn.style.transition = "all 0.3s ease";
+  backBtn.style.zIndex = "999";
+
+  backBtn.addEventListener("mouseenter", () => {
+    backBtn.style.transform = "translateX(-50%) translateY(-3px)";
+    backBtn.style.boxShadow = "0 8px 20px rgba(114,137,218,0.7)";
+  });
+  backBtn.addEventListener("mouseleave", () => {
+    backBtn.style.transform = "translateX(-50%) translateY(0)";
+    backBtn.style.boxShadow = "0 5px 15px rgba(114,137,218,0.5)";
+  });
+
+  backBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    overlay.style.display = 'flex';
+    overlay.style.opacity = '1';
+    setTimeout(() => window.location.href = "index.html", 600);
+  });
+
+  document.body.appendChild(backBtn);
+});
+</script>
+
+</body>
+</html>

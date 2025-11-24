@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solict - Discord Bot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family:'Roboto',sans-serif;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center; /* center vertically */
+      align-items:center;     /* center horizontally */
+      overflow-x:hidden;
+      color:#fff;
+      position:relative;
+      background:#0d0d0d;
+      text-align:center;
+    }
+
+    /* Animated star background */
+    canvas#starfield {
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      z-index:-1;
+    }
+
+    .container {
+      position:relative;
+      z-index:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    /* Bot profile */
+    .bot-profile img {
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      border:4px solid #7289da;
+      box-shadow:0 0 40px #7289daaa,0 0 80px #7289da44;
+      margin-bottom:20px;
+      animation:float 3s ease-in-out infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .bot-profile img:hover {
+      transform:translateY(-8px) scale(1.05);
+      box-shadow:0 0 60px #7289daee,0 0 120px #7289da66;
+    }
+    @keyframes float {
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-12px);}
+    }
+
+    /* Animated gradient title */
+    #site-title {
+      font-size:2.8rem;
+      font-weight:900;
+      background: linear-gradient(90deg, #7289da, #9b59ff, #7289da);
+      background-size: 300% 300%;
+      color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleFlow 6s ease infinite;
+      text-shadow: 0 0 15px rgba(114,137,218,0.3);
+      margin-bottom:15px;
+    }
+    @keyframes titleFlow {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    .bot-profile p {
+      font-size:1.1rem;
+      color:#bbb;
+      max-width:500px;
+      margin-bottom:30px;
+    }
+
+    /* Buttons */
+    .buttons {display:flex; gap:25px; margin-bottom:30px; flex-wrap:wrap;}
+    .btn {
+      padding:15px 35px;
+      font-size:1rem;
+      font-weight:bold;
+      border-radius:16px;
+      color:#fff;
+      text-decoration:none;
+      background:linear-gradient(135deg,#7289da,#99aab5);
+      box-shadow:0 8px 25px rgba(114,137,218,0.5);
+      transition:all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .btn::after {
+      content:"";
+      position:absolute;
+      top:0; left:-100%;
+      width:100%; height:100%;
+      background:rgba(255,255,255,0.2);
+      transition: all 0.4s ease;
+    }
+    .btn:hover {
+      transform:translateY(-8px) scale(1.1);
+      box-shadow:0 15px 40px rgba(114,137,218,0.7);
+    }
+    .btn:hover::after { left:0; }
+
+    hr {
+      width:60%;
+      border:0;
+      border-top:1px solid #444;
+      margin:10px 0;
+    }
+
+    .footer-links {
+      display:flex;
+      gap:20px;
+      font-size:0.9rem;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:10px;
+    }
+    .footer-links a {
+      color:#aaa;
+      text-decoration:none;
+      transition:color 0.3s;
+    }
+    .footer-links a:hover { color:#fff; }
+
+    footer {
+      position:relative;
+      color:#888;
+      font-size:0.85rem;
+      z-index:1;
+    }
+
+    /* Page transition overlay */
+    #transition-overlay {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background-color:#0d0d0d;
+      display:flex; justify-content:center; align-items:center;
+      z-index:9999; pointer-events:none; opacity:1; transition:opacity 0.6s ease;
+    }
+    #transition-img {
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      border:4px solid #7289da;
+      animation:spin 1s linear infinite;
+    }
+    @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+  </style>
+</head>
+<body>
+
+  <!-- Star Canvas -->
+  <canvas id="starfield"></canvas>
+
+  <!-- Page Transition -->
+  <div id="transition-overlay">
+    <img src="https://www.covetbot.lol/attached_assets/covet%20new%20icon_1763285985804.jpg" alt="Solict" id="transition-img">
+  </div>
+
+  <div class="container">
+    <div class="bot-profile">
+      <img src="https://www.covetbot.lol/attached_assets/covet%20new%20icon_1763285985804.jpg" alt="Solict Profile Picture" id="bot-pfp">
+      <h1 id="site-title">Solict</h1>
+      <p>A powerful Discord bot to enhance your server experience.</p>
+    </div>
+
+    <div class="buttons">
+      <a href="https://discord.com/oauth2/authorize?client_id=1442147985256349878&permissions=8&integration_type=0&scope=bot" class="btn" target="_blank">Invite Bot</a>
+      <a href="https://discord.gg/AtuUmctS2s" class="btn" target="_blank">Support Server</a>
+    </div>
+
+    <hr>
+    <div class="footer-links">
+      <a href="index.html">Home</a> •
+      <a href="team.html">Team</a> •
+      <a href="faq.html">FAQ</a> •
+      <a href="commands.html">Commands</a> •
+      <a href="terms.html">Terms of Service</a> •
+      <a href="privacy.html">Privacy Policy</a> •
+      <a href="status.html">Bot Status</a>
+    </div>
+  </div>
+
+  <footer>© 2025 Solict</footer>
+
+  <script>
+    // Starfield animation
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    const numStars = 200;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function createStars() {
+      stars = [];
+      for(let i=0;i<numStars;i++){
+        stars.push({
+          x: Math.random()*canvas.width,
+          y: Math.random()*canvas.height,
+          radius: Math.random()*1.2 + 0.2,
+          speed: Math.random()*0.05 + 0.02
+        });
+      }
+    }
+    createStars();
+
+    function animateStars(){
+      ctx.fillStyle = '#0d0d0d'; 
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+
+      for(let i=0;i<stars.length;i++){
+        const s = stars[i];
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI*2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        s.y -= s.speed;
+        if(s.y < 0) s.y = canvas.height;
+      }
+
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+
+    // Page transition overlay
+    const overlay = document.getElementById("transition-overlay");
+    setTimeout(() => { overlay.style.opacity = '0'; setTimeout(() => overlay.style.display = 'none', 600); }, 500);
+    const links = document.querySelectorAll('a[href$=".html"]');
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        overlay.style.display = 'flex';
+        overlay.style.opacity = '1';
+        setTimeout(() => { window.location.href = href; }, 600);
+      });
+    });
+  </script>
+
+</body>
+</html>

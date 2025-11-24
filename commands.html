@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="favicon.png">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commands - Solict</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family:'Roboto',sans-serif;
+  min-height:100vh;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  background:linear-gradient(135deg,#0d0d0d,#1a1a1a,#0d0d0d);
+  color:#fff;
+  overflow:hidden;
+}
+
+body::before, body::after {
+  content:"";
+  position:absolute;
+  filter:blur(120px);
+  will-change: transform;
+}
+
+body::before {
+  width:700px; height:700px;
+  background:radial-gradient(circle at 30% 30%,#7289da55,transparent 60%);
+  top:-200px; left:-200px;
+  animation:floatBG 20s ease-in-out infinite;
+  z-index:0;
+}
+
+body::after {
+  width:500px; height:500px;
+  background:radial-gradient(circle at 70% 70%,#99aab555,transparent 60%);
+  bottom:-150px; right:-150px;
+  animation:floatBG2 25s ease-in-out infinite;
+  z-index:0;
+}
+
+@keyframes floatBG{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-50px) rotate(45deg);}}
+@keyframes floatBG2{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(30px) rotate(-30deg);}}
+
+h1{
+  font-size:2.5rem;
+  margin:20px 0 10px 0;
+  text-align:center;
+}
+
+main {
+  max-width:900px;
+  max-height:75vh;
+  overflow-y:auto;
+  padding:20px;
+  margin-bottom:40px;
+  background:#1f1f1f;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(114,137,218,0.4);
+  transition:all 0.3s ease;
+}
+
+main:hover {
+  transform:scale(1.01) translateY(-3px);
+  box-shadow:0 15px 40px rgba(114,137,218,0.6);
+}
+
+main p, main li {
+  line-height:1.6;
+  margin-bottom:10px;
+  color:#ddd;
+}
+
+ul {
+  padding-left:20px;
+}
+
+#transition-overlay {
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background-color:#0d0d0d;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  pointer-events:none;
+  opacity:1;
+  transition:opacity 0.6s ease;
+}
+
+#transition-img {
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  border:4px solid #7289da;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+
+</style>
+</head>
+<body>
+
+<!-- Transition Overlay -->
+<div id="transition-overlay">
+  <img src="https://www.covetbot.lol/attached_assets/covet%20new%20icon_1763285985804.jpg" alt="Solict" id="transition-img">
+</div>
+
+<h1>Commands</h1>
+<main>
+<p><strong>Moderation Commands</strong></p>
+<ul>
+<li><strong>ban</strong> (aliases: b) - Ban a user from the server</li>
+<li><strong>kick</strong> - Kick a member from the server</li>
+<li><strong>timeout</strong> (aliases: mute) - Timeout/mute a user</li>
+<li><strong>unban</strong> (aliases: ub) - Unban a user</li>
+<li><strong>warn</strong> (aliases: w) - Warn system with subcommands:
+<ul>
+<li>warn - Issue a warning</li>
+<li>warn list - List warnings for a user</li>
+<li>warn delete - Delete a specific warning</li>
+<li>warn clear - Clear all warnings</li>
+<li>warn punishment - Configure punishment</li>
+<li>warn punishment list - List punishments</li>
+<li>warn punishment reset - Reset punishment configuration</li>
+</ul>
+</li>
+</ul>
+
+<p><strong>Moderation Logging</strong></p>
+<ul>
+<li><strong>modlog</strong> (aliases: mod) - Moderation log system:
+<ul>
+<li>modlog setup - Initial setup</li>
+<li>modlog channel - View current log channel</li>
+<li>modlog channel set - Set the log channel</li>
+<li>modlog toggle - Enable/disable logging</li>
+<li>modlog event - Configure event logging</li>
+<li>modlog case - View a specific case</li>
+<li>modlog user - View all cases for a user</li>
+</ul>
+</li>
+</ul>
+
+<p><strong>Utility Commands</strong></p>
+<ul>
+<li><strong>alias</strong> - Command alias system
+<ul>
+<li>alias add - Create a command alias</li>
+<li>alias remove - Remove an alias</li>
+<li>alias list - List all aliases</li>
+<li>alias clear - Clear all aliases</li>
+</ul>
+</li>
+
+<li><strong>prefix</strong> (aliases: p) - Prefix management
+<ul>
+<li>prefix add - Add a server prefix</li>
+<li>prefix remove - Remove a server prefix</li>
+<li>prefix list - List all prefixes</li>
+<li>prefix self - Set personal prefix</li>
+<li>prefix self toggle - Toggle personal prefix</li>
+</ul>
+</li>
+
+<li><strong>invoke</strong> (aliases: inv) - Auto-response system
+<ul>
+<li>invoke set - Set an auto-response</li>
+<li>invoke preview - Preview an invoke</li>
+<li>invoke reset - Reset an invoke</li>
+<li>invoke clear - Clear all invokes</li>
+<li>invoke list - List all invokes</li>
+<li>invoke variables - Show available variables</li>
+</ul>
+</li>
+
+<li><strong>welcome</strong> (aliases: welc, greet, join) - Welcome message system
+<ul>
+<li>welcome list - List welcome messages</li>
+<li>welcome remove - Remove a welcome message</li>
+<li>welcome clear - Clear all welcome messages</li>
+<li>welcome variables - Show available variables</li>
+<li>welcome preview - Preview a welcome message</li>
+<li>welcome move - Move welcome to different channel</li>
+</ul>
+</li>
+
+<li><strong>role</strong> - Role management
+<ul>
+<li>role - Add/remove roles from members</li>
+<li>role create - Create a new role</li>
+<li>role delete - Delete a role</li>
+</ul>
+</li>
+
+<li><strong>crypto</strong> - Cryptocurrency information
+<ul>
+<li>crypto - Get crypto price info</li>
+<li>crypto convert - Convert between cryptocurrencies</li>
+<li>crypto price - Get price for specific amount</li>
+</ul>
+</li>
+
+<li><strong>Safety & Filtering</strong></li>
+<ul>
+<li><strong>disable</strong> (aliases: dis, restrict, off)
+<ul>
+<li>disable - Disable a command for user/channel</li>
+<li>disable list - List all disabled commands</li>
+<li>enable - Re-enable a disabled command</li>
+</ul>
+</li>
+<li><strong>filter</strong> (aliases: automod)
+<ul>
+<li>filter add - Add a filtered word</li>
+<li>filter list - List filtered words</li>
+<li>filter remove - Remove a filtered word</li>
+<li>filter regex add - Add regex filter</li>
+<li>filter regex list - List regex filters</li>
+<li>filter regex remove - Remove regex filter</li>
+<li>filter invite on - Enable invite filtering</li>
+<li>filter invite off - Disable invite filtering</li>
+<li>filter invite edit - Edit invite filter settings</li>
+</ul>
+</li>
+</ul>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.getElementById("transition-overlay");
+  setTimeout(() => {
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.style.display = 'none', 600);
+  }, 500);
+
+  // Back to Home button
+  const backBtn = document.createElement("a");
+  backBtn.href = "index.html";
+  backBtn.textContent = "Back to Home";
+  backBtn.style.position = "fixed";
+  backBtn.style.bottom = "20px";
+  backBtn.style.left = "50%";
+  backBtn.style.transform = "translateX(-50%)";
+  backBtn.style.padding = "12px 24px";
+  backBtn.style.background = "#7289da";
+  backBtn.style.color = "#fff";
+  backBtn.style.fontWeight = "bold";
+  backBtn.style.borderRadius = "12px";
+  backBtn.style.textDecoration = "none";
+  backBtn.style.boxShadow = "0 5px 15px rgba(114,137,218,0.5)";
+  backBtn.style.transition = "all 0.3s ease";
+  backBtn.style.zIndex = "999";
+
+  backBtn.addEventListener("mouseenter", () => {
+    backBtn.style.transform = "translateX(-50%) translateY(-3px)";
+    backBtn.style.boxShadow = "0 8px 20px rgba(114,137,218,0.7)";
+  });
+  backBtn.addEventListener("mouseleave", () => {
+    backBtn.style.transform = "translateX(-50%) translateY(0)";
+    backBtn.style.boxShadow = "0 5px 15px rgba(114,137,218,0.5)";
+  });
+
+  backBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    overlay.style.display = 'flex';
+    overlay.style.opacity = '1';
+    setTimeout(() => window.location.href = "index.html", 600);
+  });
+
+  document.body.appendChild(backBtn);
+});
+</script>
+
+</body>
+</html>
